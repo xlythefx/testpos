@@ -13,9 +13,10 @@ class CafeTable extends Model
 
     protected $table = 'cafe_tables';
 
-    protected $fillable = ['name', 'capacity', 'status'];
+    protected $fillable = ['number', 'capacity', 'status'];
 
     protected $casts = [
+        'number' => 'integer',
         'capacity' => 'integer',
     ];
 

@@ -14,8 +14,8 @@ class StoreCafeTableRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'capacity' => ['required', 'integer', 'min:1'],
+            'number' => ['required', 'integer', 'min:1', 'unique:cafe_tables,number'],
+            'capacity' => ['sometimes', 'integer', 'min:1'],
             'status' => ['sometimes', 'in:available,occupied,reserved'],
         ];
     }

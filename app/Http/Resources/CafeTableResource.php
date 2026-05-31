@@ -11,7 +11,7 @@ class CafeTableResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'number' => $this->number,
             'capacity' => $this->capacity,
             'status' => $this->status,
             'created_at' => $this->created_at?->toIso8601String(),

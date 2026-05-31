@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCafeTableRequest extends FormRequest
 {
@@ -14,8 +15,8 @@ class UpdateCafeTableRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'capacity' => ['sometimes', 'required', 'integer', 'min:1'],
+            'number' => ['sometimes', 'required', 'integer', 'min:1', Rule::unique('cafe_tables', 'number')->ignore($this->route('cafe_table'))],
+            'capacity' => ['sometimes', 'integer', 'min:1'],
             'status' => ['sometimes', 'in:available,occupied,reserved'],
         ];
     }

@@ -17,13 +17,15 @@ class MenuItem extends Model
         'name',
         'description',
         'price',
-        'image_path',
+        'image_url',
         'is_available',
+        'sort_order',
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
         'is_available' => 'boolean',
+        'sort_order' => 'integer',
     ];
 
     public function category(): BelongsTo

@@ -13,7 +13,7 @@ class OrderController extends Controller
     public function index()
     {
         return OrderResource::collection(
-            Order::with(['cafeTable', 'cashier', 'items.menuItem'])
+            Order::with(['cafeTable', 'user', 'items.menuItem', 'payment'])
                 ->latest()
                 ->paginate(15)
         );
@@ -26,18 +26,18 @@ class OrderController extends Controller
             $data['order_number'] = 'ORD-' . now()->format('Ymd') . '-' . str_pad((string)(Order::whereDate('created_at', today())->count() + 1), 4, '0', STR_PAD_LEFT);
         }
         $order = Order::create($data);
-        return new OrderResource($order->load(['cafeTable', 'cashier', 'items.menuItem']));
+        return new OrderResource($order->load(['cafeTable', 'user', 'items.menuItem', 'payment']));
     }
 
     public function show(Order $order)
     {
-        return new OrderResource($order->load(['cafeTable', 'cashier', 'items.menuItem']));
+        return new OrderResource($order->load(['cafeTable', 'user', 'items.menuItem', 'payment']));
     }
 
     public function update(UpdateOrderRequest $request, Order $order)
     {
         $order->update($request->validated());
-        return new OrderResource($order->load(['cafeTable', 'cashier', 'items.menuItem']));
+        return new OrderResource($order->load(['cafeTable', 'user', 'items.menuItem', 'payment']));
     }
 
     public function destroy(Order $order)

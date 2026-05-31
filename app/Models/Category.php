@@ -11,11 +11,11 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'description', 'display_order', 'is_active'];
+    protected $fillable = ['name', 'description', 'sort_order', 'is_active'];
 
     protected $casts = [
         'is_active' => 'boolean',
-        'display_order' => 'integer',
+        'sort_order' => 'integer',
     ];
 
     public function menuItems(): HasMany
