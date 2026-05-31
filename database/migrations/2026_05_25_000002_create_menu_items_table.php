@@ -13,13 +13,15 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->restrictOnDelete();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2);
-            $table->string('image_path')->nullable();
+            $table->decimal('price', 8, 2);                  // spec: decimal(8,2)
+            $table->string('image_url')->nullable();         // URL or relative path to image
             $table->boolean('is_available')->default(true);
+            $table->unsignedInteger('sort_order')->default(0);
             $table->softDeletes();
             $table->timestamps();
 
             $table->index('is_available');
+            $table->index('sort_order');
             $table->index(['category_id', 'is_available']);
         });
     }

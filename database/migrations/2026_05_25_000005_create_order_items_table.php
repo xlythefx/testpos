@@ -13,9 +13,9 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
             $table->foreignId('menu_item_id')->constrained('menu_items')->restrictOnDelete();
             $table->unsignedInteger('quantity');
-            $table->decimal('unit_price', 10, 2);   // price snapshot at time of order
-            $table->decimal('subtotal', 10, 2);      // quantity × unit_price
-            $table->text('notes')->nullable();
+            $table->decimal('unit_price', 8, 2);             // price snapshot at time of order
+            $table->decimal('subtotal', 10, 2);              // quantity × unit_price
+            $table->text('notes')->nullable();               // per-item special instructions
             $table->timestamps();
 
             $table->index(['order_id', 'menu_item_id']);
